@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="eng-uk">
+    <head>
+
+        <title>Fibonacci Calculator</title>
+
+        <meta charset="utf-8" />
+
+        <link rel="stylesheet" type="text/css" href="./fibstyle.css" />
+
+    </head>
+    <body>
+
+        <nav>
+            <h1>Fibonacci Calculator</h1>
+        </nav>
+
+        <!--  This is the main form.  -->
+        <form id="frmCalc">
+
+            <legend>Enter Sequence Details</legend>
+
+            <fieldset>
+                <label for="txtFirstNum">Second number in sequence:</label>
+                <input type="number" id="txtFirstNum" name="txtFirstNum" min="0" max="9999" step="1" required />
+            </fieldset>
+
+            <fieldset>
+                <label for="txtSecondNum">Second number in sequence:</label>
+                <input type="number" id="txtSecondNum" name="txtSecondNum" min="0" max="9999" step="1" required />
+            </fieldset>
+
+            <fieldset>
+                <label for="txtTimesCalc">Number of times to calculate:</label>
+                <input type="number" id="txtTimesCalc" name="txtTimesCalc" min="0" max="50" step="1" required />
+            </fieldset>
+
+            <button id="btnCalculate" type="submit">Calculate</button>
+
+        </form>
+
+        <!--  The error messages  -->
+        <div id="errorSequence">
+            <button id="btnCloseSequenceErrorMsg" class="errorCloseButton">X</button>
+            <h2>Error:</h2>
+            <p>Please enter valid sequence numbers.</p>
+        </div>
+
+        <div id="errorTimer">
+            <button id="btnCloseTimerErrorMsg" class="errorCloseButton">X</button>
+            <h2>Error:</h2>
+            <p>Please enter valid number of times.</p>
+        </div>
+
+        <!--  The results  -->
+        <section id="results">
+            <h2>Results</h2>
+            <h3 id="txtResults"></h3>
+            <ul id="resultList"></ul>
+        </section>
+
+        <footer>
+            <p>20 December 2025</p>
+        </footer>
+
+        <script src="./fiblogic.js"></script>
+
+    </body>
+</html>
