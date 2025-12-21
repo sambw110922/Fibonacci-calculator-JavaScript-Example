@@ -10,10 +10,10 @@ html {
 }
 
 h1, h2, h3, h4 {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Arial, Helvetica, sans-serif
 }
 
-h1 {
+h1, #results h2 {
     text-align: center;
 }
 
@@ -22,13 +22,16 @@ nav {
 }
 
 label, legend {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 #frmCalc {
     padding: 2%;
     margin: 2%;
     border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    margin-top: 5%;
 }
 
 fieldset {
@@ -36,12 +39,6 @@ fieldset {
     margin: 2%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-}
-
-#frmCalc {
-    border-width: 1px;
-    border-radius: 5px;
-    margin-top: 5%;
 }
 
 #results {
@@ -60,13 +57,9 @@ fieldset {
     list-style-type: none;
 }
 
-.hideForm {
-    display: none;
-}
-
-.showResults {
+.showResults, .fibNum {
     display: block;
-    animation-name: resultsFadeIn;
+    animation-name: generalFadeIn;
     animation-duration: 2s;
 }
 
@@ -77,7 +70,7 @@ input {
     text-align: center;
 }
 
-#btnCalculate {
+.confirmButton {
     background-color: royalblue;
     padding: 15px;
     font-size: 18px;
@@ -87,7 +80,7 @@ input {
     color: white;
 }
 
-#btnCalculate:hover {
+.confirmButton:hover {
     background-color: skyblue;
     border-color: black;
     color: black;
@@ -95,11 +88,9 @@ input {
 
 .fibNum {
     font-size: 2em;
-    animation-name: numFadeIn;
-    animation-duration: 5s;
 }
 
-.showErrorSequence {
+.errorPanel {
     display: block;
     position: absolute;
     top: 15%;
@@ -112,57 +103,11 @@ input {
     background-color: white;
 }
 
-.showErrorTimer {
-    display: block;
-    position: absolute;
-    top: 15%;
-    left: 5%;
-    padding: 20px;
-    width: 80%;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 5px;
-    background-color: white;
-}
-
-.errorCloseButton {
-    float: right;
-    background-color: royalblue;
-    padding: 15px;
-    font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-    border-style: none;
-    box-shadow: 2px 2px gray;
-    color: white;
-}
-
-.errorCloseButton:hover {
-    background-color: skyblue;
-    border-color: black;
-    color: black;
-}
-
-.hideErrorSequence {
+.hideErrorPanel {
     display: none;
 }
 
-.hideErrorTimer {
-    display: none;
-}
-
-@keyFrames resultsFadeIn {
-    
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 100;
-    }  
-
-}
-
-@keyframes numFadeIn {
+@keyframes generalFadeIn {
 
     from {
         opacity: 0;
@@ -176,6 +121,7 @@ input {
 
 footer {
     color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     background-color:black;
     text-align: center;
     font-size: 0.8em;

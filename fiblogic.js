@@ -5,10 +5,6 @@
 //  This function gets the user input for the sequence.
 function GetUserInput(){
 
-    var noTime = 0
-    var num1 = 0
-    var num2 = 0
-
     var noTime = parseInt(document.getElementById("txtTimesCalc").value);
     var num1 = parseInt(document.getElementById("txtFirstNum").value);
     var num2 = parseInt(document.getElementById("txtSecondNum").value);
@@ -26,7 +22,7 @@ function GetUserInput(){
 
             //  display error message
             document.getElementById("errorTimer").className = "";
-            document.getElementById("errorTimer").className = "showErrorTimer";
+            document.getElementById("errorTimer").className = "errorPanel";
 
         }
 
@@ -35,28 +31,9 @@ function GetUserInput(){
 
         //  display error message
         document.getElementById("errorSequence").className = "";
-        document.getElementById("errorSequence").className = "showErrorSequence";
+        document.getElementById("errorSequence").className = "errorPanel";
 
     }
-
-    /*
-
-    //  Validate the inputs.
-    if(ValidateTimesNum(noTime) == true && ValidateTimesNum(num1) == true && ValidateTimesNum(num2) == true){
-        
-        var sequence = [num1, num2];
-
-        //  Perform the fibonacci
-        Fibonacci(noTime, sequence);
-
-    } else {
-
-        //  display error message
-        window.alert("one or more of your inputs is invalid.")
-
-    }
-
-    */
 
 }
 
@@ -68,7 +45,9 @@ function ValidateTimesNum(timesNum){
     const maxTimes = 50;
 
     if(timesNum > 0 && timesNum <= maxTimes){
+
         isValid = true;
+
     }
 
     return isValid;
@@ -80,7 +59,7 @@ function ValidateSequenceNums(sequenceNum){
 
     var isValid = false;
 
-    const maxSequence = 9999;
+    const maxSequence = 100;
 
     if(sequenceNum > 0 && sequenceNum <= maxSequence){
         
@@ -106,13 +85,12 @@ function Fibonacci(noTime, sequence){
 
         sequence.push(num3);
 
-        noTime = noTime - 1;
+        --noTime;
 
         Fibonacci(noTime, sequence);
 
     } else {
 
-        console.log(sequence);
         DisplayResults(sequence);
 
     }
@@ -124,7 +102,7 @@ function DisplayResults(sequence){
 
     //  Display the results
     document.getElementById("results").className = "";
-    document.getElementById("results").classList = "showResults";
+    document.getElementById("results").className = "showResults";
 
     //var sequenceStr = "";
 
@@ -147,36 +125,12 @@ function DisplayResults(sequence){
 
             document.getElementById("resultList").append(newPoint);
 
+        //  Because we want the results to fade in after each other, 
+        //  the length of the animation duration should increase slightly
+        //  for each result
         }, i * 1000);
 
     }
-
-        /*
-
-        document.getElementById("resultList").append(newPoint);
-
-        }, 2 * 1000);
-
-        //sequenceStr = sequenceStr + sequence[i].toString();
-
-        var newPoint = document.createElement("li");
-        
-        newPoint.className = "fibNum";
-        newPoint.innerHTML = sequence[i].toString();
-
-        //  only add a comma if not at the end of sequence
-        if(i < sequence.length-1){
- 
-            //sequenceStr = sequenceStr  + ", ";
-            newPoint.innerHTML += ", ";
-        }
-
-        document.getElementById("resultList").append(newPoint);
-
-        */
-
-    //  Display the string.
-    //document.getElementById("txtResults").innerHTML = sequenceStr;
 
 }
 
@@ -189,21 +143,21 @@ function init(){
 
     //  Hide the error messages
     document.getElementById("errorSequence").className = "";
-    document.getElementById("errorSequence").className = "hideErrorSequence";
+    document.getElementById("errorSequence").className = "hideErrorPanel";
 
     document.getElementById("errorTimer").className = "";
-    document.getElementById("errorTimer").className = "hideErrorTimer";
+    document.getElementById("errorTimer").className = "hideErrorPanel";
 
     //  For the sequence error message
     document.getElementById("btnCloseSequenceErrorMsg").addEventListener("click", function(){
         document.getElementById("errorSequence").className = "";
-        document.getElementById("errorSequence").className = "hideErrorSequence";
+        document.getElementById("errorSequence").className = "hideErrorPanel";
     });
 
     //  For the timer error message
     document.getElementById("btnCloseTimerErrorMsg").addEventListener("click", function(){
         document.getElementById("errorTimer").className = "";
-        document.getElementById("errorTimer").className = "hideErrorTimer";
+        document.getElementById("errorTimer").className = "hideErrorPanel";
     });
 
     //  The click function of the submit form
@@ -213,8 +167,6 @@ function init(){
 
         //  Gets the user input
         GetUserInput();
-
-
 
     });
 

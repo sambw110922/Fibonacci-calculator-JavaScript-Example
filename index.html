@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="eng-uk">
+<html lang="eng-gb">
     <head>
 
         <title>Fibonacci Calculator</title>
@@ -22,12 +22,12 @@
 
             <fieldset>
                 <label for="txtFirstNum">Second number in sequence:</label>
-                <input type="number" id="txtFirstNum" name="txtFirstNum" min="0" max="9999" step="1" required />
+                <input type="number" id="txtFirstNum" name="txtFirstNum" min="0" max="10" step="1" required />
             </fieldset>
 
             <fieldset>
                 <label for="txtSecondNum">Second number in sequence:</label>
-                <input type="number" id="txtSecondNum" name="txtSecondNum" min="0" max="9999" step="1" required />
+                <input type="number" id="txtSecondNum" name="txtSecondNum" min="0" max="100" step="1" required />
             </fieldset>
 
             <fieldset>
@@ -35,19 +35,19 @@
                 <input type="number" id="txtTimesCalc" name="txtTimesCalc" min="0" max="50" step="1" required />
             </fieldset>
 
-            <button id="btnCalculate" type="submit">Calculate</button>
+            <button id="btnCalculate" class="confirmButton" type="submit">Calculate</button>
 
         </form>
 
         <!--  The error messages  -->
-        <div id="errorSequence">
-            <button id="btnCloseSequenceErrorMsg" class="errorCloseButton">X</button>
+        <div id="errorSequence" class="errorPanel">
+            <button id="btnCloseSequenceErrorMsg" class="confirmButton">X</button>
             <h2>Error:</h2>
             <p>Please enter valid sequence numbers.</p>
         </div>
 
-        <div id="errorTimer">
-            <button id="btnCloseTimerErrorMsg" class="errorCloseButton">X</button>
+        <div id="errorTimer" class="errorPanel">
+            <button id="btnCloseTimerErrorMsg" class="confirmButton">X</button>
             <h2>Error:</h2>
             <p>Please enter valid number of times.</p>
         </div>
