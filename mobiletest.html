@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+    <head>
+
+        <title>Fibonacci Calculator</title>
+
+        <meta charset="utf-8" />
+
+        <style>	
+		
+/*
+    19th December 2025
+    This is fibstyle.css
+*/
+
+html {
+    font-size: 20px;
+    background-color: lightgray;
+}
+
+h1, h2, h3, h4 {
+    font-family: Arial, Helvetica, sans-serif
+}
+
+h1, #results h2 {
+    text-align: center;
+}
+
+nav {
+    margin-top: 3%;
+}
+
+label, legend {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#frmCalc {
+    padding: 2%;
+    margin: 2%;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    margin-top: 5%;
+}
+
+fieldset {
+    padding: 2%;
+    margin: 2%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#results {
+    margin-left: 5%;
+    padding: 5%;
+    width: 80%;
+}
+
+#results h2 {
+    text-align: center;
+}
+
+#resultList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    list-style-type: none;
+}
+
+.showResults, .fibNum {
+    display: block;
+    animation-name: generalFadeIn;
+    animation-duration: 2s;
+}
+
+input {
+    background-color:beige;
+    border-width: 1px;
+    padding: 5px;
+    text-align: center;
+}
+
+.confirmButton {
+    background-color: royalblue;
+    padding: 15px;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-style: none;
+    box-shadow: 2px 2px gray;
+    color: white;
+}
+
+.confirmButton:hover {
+    background-color: skyblue;
+    border-color: black;
+    color: black;
+}
+
+.fibNum {
+    font-size: 2em;
+}
+
+.errorPanel {
+    display: block;
+    position: absolute;
+    top: 15%;
+    left: 5%;
+    padding: 20px;
+    width: 80%;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.hideErrorPanel {
+    display: none;
+}
+
+@keyframes generalFadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 100;
+    }
+
+}
+
+footer {
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color:black;
+    text-align: center;
+    font-size: 0.8em;
+    padding: 5%;
+    margin-top: 20%;
+}
+		
+		</style>
+
+    </head>
+    <body>
+
+        <nav>
+            <h1>Fibonacci Calculator</h1>
+        </nav>
+
+        <!--  This is the main form.  -->
+        <form id="frmCalc">
+
+            <legend>Enter Sequence Details</legend>
+
+            <fieldset>
+                <label for="txtFirstNum">Second number in sequence:</label>
+                <input type="number" id="txtFirstNum" name="txtFirstNum" min="0" max="10" step="1" required />
+            </fieldset>
+
+            <fieldset>
+                <label for="txtSecondNum">Second number in sequence:</label>
+                <input type="number" id="txtSecondNum" name="txtSecondNum" min="0" max="100" step="1" required />
+            </fieldset>
+
+            <fieldset>
+                <label for="txtTimesCalc">Number of times to calculate:</label>
+                <input type="number" id="txtTimesCalc" name="txtTimesCalc" min="0" max="50" step="1" required />
+            </fieldset>
+
+            <button id="btnCalculate" class="confirmButton" type="submit">Calculate</button>
+
+        </form>
+
+        <!--  The error messages  -->
+        <div id="errorSequence" class="errorPanel">
+            <button id="btnCloseSequenceErrorMsg" class="confirmButton">X</button>
+            <h2>Error:</h2>
+            <p>Please enter valid sequence numbers.</p>
+        </div>
+
+        <div id="errorTimer" class="errorPanel">
+            <button id="btnCloseTimerErrorMsg" class="confirmButton">X</button>
+            <h2>Error:</h2>
+            <p>Please enter valid number of times.</p>
+        </div>
+
+        <!--  The results  -->
+        <section id="results">
+            <h2>Results</h2>
+            <h3 id="txtResults"></h3>
+            <ul id="resultList"></ul>
+        </section>
+
+        <footer>
+            <p>20 December 2025</p>
+        </footer>
+
+        <script>
+		
+/*
+    19th December 2025.
+*/
+
+//  This function gets the user input for the sequence.
+function GetUserInput(){
+
+    var noTime = parseInt(document.getElementById("txtTimesCalc").value);
+    var num1 = parseInt(document.getElementById("txtFirstNum").value);
+    var num2 = parseInt(document.getElementById("txtSecondNum").value);
+
+    if(ValidateSequenceNums(num1) == true && ValidateSequenceNums(num2) == true){
+
+        if(ValidateTimesNum(noTime) == true){
+
+            var sequence = [num1, num2];
+
+            //  Perform the fibonacci
+            Fibonacci(noTime, sequence);
+
+        } else {
+
+            //  display error message
+            document.getElementById("errorTimer").className = "";
+            document.getElementById("errorTimer").className = "errorPanel";
+
+        }
+
+
+    } else {
+
+        //  display error message
+        document.getElementById("errorSequence").className = "";
+        document.getElementById("errorSequence").className = "errorPanel";
+
+    }
+
+}
+
+//  This validates the number of times
+function ValidateTimesNum(timesNum){
+
+    var isValid = false;
+
+    const maxTimes = 50;
+
+    if(timesNum > 0 && timesNum <= maxTimes){
+
+        isValid = true;
+
+    }
+
+    return isValid;
+
+}
+
+//  This validates the sequence numbers
+function ValidateSequenceNums(sequenceNum){
+
+    var isValid = false;
+
+    const maxSequence = 100;
+
+    if(sequenceNum > 0 && sequenceNum <= maxSequence){
+        
+        isValid = true;
+
+    }
+
+    return isValid;
+
+}
+
+//  This function actually calculates the sequence
+//  noTime = the number of times to perform the sequence
+//  sequence = the actual list
+function Fibonacci(noTime, sequence){
+
+    if(noTime > 0){
+
+        let lastNum = sequence[sequence.length-1];
+        let penultimateNum = sequence[sequence.length-2];
+        
+        let num3 = penultimateNum + lastNum;
+
+        sequence.push(num3);
+
+        --noTime;
+
+        Fibonacci(noTime, sequence);
+
+    } else {
+
+        DisplayResults(sequence);
+
+    }
+
+}
+
+//  Displays the result
+function DisplayResults(sequence){
+
+    //  Display the results
+    document.getElementById("results").className = "";
+    document.getElementById("results").className = "showResults";
+
+    //var sequenceStr = "";
+
+    for(let i = 0; i < sequence.length; i++){
+
+        setTimeout(function(){
+
+            var newPoint = document.createElement("li");
+            
+            newPoint.className = "fibNum";
+            newPoint.innerHTML = sequence[i].toString();
+
+            //  only add a comma if not at the end of sequence
+            if(i < sequence.length-1){
+    
+                //sequenceStr = sequenceStr  + ", ";
+                newPoint.innerHTML += ", ";
+
+            }
+
+            document.getElementById("resultList").append(newPoint);
+
+        //  Because we want the results to fade in after each other, 
+        //  the length of the animation duration should increase slightly
+        //  for each result
+        }, i * 1000);
+
+    }
+
+}
+
+//  The start up function 
+function init(){
+
+    //  hide the results on start
+    document.getElementById("results").className = "";
+    document.getElementById("results").className = "hideResults";
+
+    //  Hide the error messages
+    document.getElementById("errorSequence").className = "";
+    document.getElementById("errorSequence").className = "hideErrorPanel";
+
+    document.getElementById("errorTimer").className = "";
+    document.getElementById("errorTimer").className = "hideErrorPanel";
+
+    //  For the sequence error message
+    document.getElementById("btnCloseSequenceErrorMsg").addEventListener("click", function(){
+        document.getElementById("errorSequence").className = "";
+        document.getElementById("errorSequence").className = "hideErrorPanel";
+    });
+
+    //  For the timer error message
+    document.getElementById("btnCloseTimerErrorMsg").addEventListener("click", function(){
+        document.getElementById("errorTimer").className = "";
+        document.getElementById("errorTimer").className = "hideErrorPanel";
+    });
+
+    //  The click function of the submit form
+    document.getElementById("btnCalculate").addEventListener("click", function(e){
+
+        e.preventDefault();
+
+        //  Gets the user input
+        GetUserInput();
+
+    });
+
+}
+
+init();
+		
+		</script>
+
+    </body>
+</html>
