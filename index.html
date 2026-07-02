@@ -1,63 +1,76 @@
 <!DOCTYPE html>
-<html lang="eng-gb">
+<html lang="en-GB">
+    
     <head>
-
         <title>Fibonacci Calculator</title>
-
-        <meta charset="utf-8" />
-
-        <link rel="stylesheet" type="text/css" href="./fibstyle.css" />
-
+        <meta charset="utf-8" >
+        <link rel="stylesheet" type="text/css" href="./fibstyle.css" >
     </head>
+
     <body>
 
-        <nav>
-            <h1>Fibonacci Calculator</h1>
-        </nav>
+        <header>
+            <nav>
+                <h1>Fibonacci Calculator</h1>
+            </nav>
+        </header>
 
-        <!--  This is the main form.  -->
-        <form id="frmCalc">
+        <main>
 
-            <legend>Enter Sequence Details</legend>
+            <section>
 
-            <fieldset>
-                <label for="txtFirstNum">Second number in sequence:</label>
-                <input type="number" id="txtFirstNum" name="txtFirstNum" min="0" max="10" step="1" required />
-            </fieldset>
+                <h2>About</h2>
+                <p>
+                    In maths, the Fibonacci sequence is a term for a pattern of numbers where  
+                    the next number in the sequence is the sum of the two previous. For example, in a 
+                    sequence of 2, 3, n... , n will be 2 + 3, which is 5. The sequence repeats.
+                </p>
 
-            <fieldset>
-                <label for="txtSecondNum">Second number in sequence:</label>
-                <input type="number" id="txtSecondNum" name="txtSecondNum" min="0" max="100" step="1" required />
-            </fieldset>
+                <figure>
+                    <img id="fibImage" alt="A visual example of the sequence." src="./images/fib-by-example-2.png" >
+                    <figcaption>
+                        Above: an example of the sequence by squares. From right to left are 2 1x1 blocks, followed by 1 2x2 blocks, 3x3 blocks, and so on.
+                    </figcaption>
+                </figure>
 
-            <fieldset>
-                <label for="txtTimesCalc">Number of times to calculate:</label>
-                <input type="number" id="txtTimesCalc" name="txtTimesCalc" min="0" max="50" step="1" required />
-            </fieldset>
+                <p>
+                    In this calculator, you enter the first two numbers of the sequence (minimum 0, maximum 100) and then the number 
+                    of times to repeat (minimum 0, maximum 50). The results will then be displayed.
+                </p>
 
-            <button id="btnCalculate" class="confirmButton" type="submit">Calculate</button>
+            </section>
 
-        </form>
+            <!--  This is the main form.  -->
+            <form id="frmCalc">
+                
+                <fieldset>
+                    <label for="txtFirstNum">First number in sequence:</label>
+                    <input type="number" id="txtFirstNum" name="txtFirstNum" min="0" max="10" step="1" required >
+                </fieldset>
 
-        <!--  The error messages  -->
-        <div id="errorSequence" class="errorPanel">
-            <button id="btnCloseSequenceErrorMsg" class="confirmButton">X</button>
-            <h2>Error:</h2>
-            <p>Please enter valid sequence numbers.</p>
-        </div>
+                <fieldset>
+                    <label for="txtSecondNum">Second number in sequence:</label>
+                    <input type="number" id="txtSecondNum" name="txtSecondNum" min="0" max="100" step="1" required >
+                </fieldset>
 
-        <div id="errorTimer" class="errorPanel">
-            <button id="btnCloseTimerErrorMsg" class="confirmButton">X</button>
-            <h2>Error:</h2>
-            <p>Please enter valid number of times.</p>
-        </div>
+                <fieldset>
+                    <label for="txtTimesCalc">Number of times to calculate:</label>
+                    <input type="number" id="txtTimesCalc" name="txtTimesCalc" min="0" max="50" step="1" required >
+                </fieldset>
 
-        <!--  The results  -->
-        <section id="results">
-            <h2>Results</h2>
-            <h3 id="txtResults"></h3>
-            <ul id="resultList"></ul>
-        </section>
+                <button id="btnCalculate" class="confirmButton" type="submit">Calculate</button>
+
+            </form>
+
+            <!--  The results  -->
+            <section id="results">
+                <h2>Results</h2>
+                <p>Your results will go here.</p>
+                <div id="listContainer">
+                </div>
+            </section>
+
+        </main>
 
         <footer>
             <p>20 December 2025</p>
