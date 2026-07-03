@@ -1,7 +1,7 @@
 # Fibonacci-calculator-JavaScript-Example
 An example Fibonacci calculator using JavaScript.
 
-!(This is a screenshot of the project.)[https://github.com/sambw110922/Fibonacci-calculator-JavaScript-Example/blob/11f74573a082b006f3b1ae17f594235e98666b75/project-screenshot.png]
+![This is a screenshot of the project.](https://github.com/sambw110922/Fibonacci-calculator-JavaScript-Example/blob/11f74573a082b006f3b1ae17f594235e98666b75/project-screenshot.png)
 
 This project contains:
 
